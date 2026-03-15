@@ -1,31 +1,25 @@
 class Solution {
 public:
-    // Use long long for the sum to prevent overflow on large test cases
-    long long calculateTotalHours(vector<int>& piles, int speed) {
-        long long total = 0;
-        for (int pile : piles) {
-            // Standard integer ceiling: (a + b - 1) / b
-            total += (1LL * pile + speed - 1) / speed;
+    bool check(vector<int>& piles, int m,int h){
+        long long count=0;
+        for(auto it:piles){
+            count+=(it+m-1LL)/m;
+            if(count>h)return false;
         }
-        return total;
+        return count<=h;
     }
-
     int minEatingSpeed(vector<int>& piles, int h) {
-        int l = 1; // Start at 1 to avoid division by zero
-        int r = *max_element(piles.begin(), piles.end());
-        int ans = r;
-
-        while (l <= r) {
-            int mid = l + (r - l) / 2;
-            
-            // Safety check: mid could be 0 if l was 0
-            if (mid == 0) { l = 1; continue; }
-
-            if (calculateTotalHours(piles, mid) <= h) {
-                ans = mid;    // This speed is possible, try slower
-                r = mid - 1;
-            } else {
-                l = mid + 1;  // Too slow, must eat faster
+        int l=1;
+        int r=*max_element(piles.begin(),piles.end());
+        int ans=r;
+        while(l<=r){
+            int m=l+(r-l)/2;
+            if(check(piles,m,h)){
+                ans=m;
+                r=m-1;
+            }
+            else{
+                l=m+1;
             }
         }
         return ans;
