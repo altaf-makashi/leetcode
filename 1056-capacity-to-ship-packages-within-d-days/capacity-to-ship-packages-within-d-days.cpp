@@ -3,7 +3,7 @@ public:
     bool possible(vector<int>& nums, int m, int k){
         int days=1,count=0;
         for(auto it:nums){
-            if(m<it)return false;
+            // if(m<it)return false;
             count+=it;
             if(count>m){
                 days++;
@@ -14,7 +14,7 @@ public:
         return days<=k;
     }
     int shipWithinDays(vector<int>& nums, int k) {
-        int l=*min_element(nums.begin(),nums.end());
+        int l=*max_element(nums.begin(),nums.end());
         int r=accumulate(nums.begin(),nums.end(),0);
         int total=r;
         int ans=r;
