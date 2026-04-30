@@ -11,12 +11,13 @@
 class Solution {
 public:
     int count_Nodes(ListNode* head){
-        int count=0;
+        int count=1;
         ListNode* temp=head;
-        while(temp!=NULL){
-            count++;
-            temp=temp->next;
+        while(temp!=NULL && temp->next!=NULL){
+            count+=2;
+            temp=temp->next->next;
         }
+        if(temp==NULL)count--;
         return count;
     }
     ListNode* removeNthFromEnd(ListNode* head, int n) {
