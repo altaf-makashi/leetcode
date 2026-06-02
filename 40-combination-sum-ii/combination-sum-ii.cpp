@@ -6,10 +6,10 @@ public:
             ans.push_back(temp);
             return;
         }
+        if(curr_sum>target){
+            return ;
+        }
         for(int i=index;i<nums.size();i++){
-            if(curr_sum>target){
-                return ;
-            }
             if(i>index && nums[i]==nums[i-1])continue;
             temp.push_back(nums[i]);
             helper(i+1,curr_sum+nums[i],temp,nums,target);
