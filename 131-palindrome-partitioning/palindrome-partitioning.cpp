@@ -1,10 +1,10 @@
 class Solution {
 public:
     vector<vector<string>>ans;
-    bool isPalindrom(string temp){
-        int l=0,r=temp.size()-1;
+    bool isPalindrom(const string &s,int l,int r){
+        // int l=0,r=temp.size()-1;
         while(l<=r){
-            if(temp[l]!=temp[r])return false;
+            if(s[l]!=s[r])return false;
             l++;
             r--;
         }
@@ -17,7 +17,7 @@ public:
         }
         for(int i=index;i<s.size();i++){
             string sub=s.substr(index,i-index+1);
-            if(isPalindrom(sub)){
+            if(isPalindrom(s,index,i)){
                 temp.push_back(sub);
                 fun(i+1,temp,s);
                 temp.pop_back();
