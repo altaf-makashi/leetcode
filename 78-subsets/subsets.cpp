@@ -4,8 +4,8 @@ public:
         vector<vector<int>>ans;
         int n=nums.size();
         int subsets=1<<n;
-        ans.push_back({});
-        for(int i=1;i<subsets;i++){
+        // ans.push_back({});
+        for(int i=0;i<subsets;i++){
             vector<int>temp;
             for(int j=0;j<n;j++){
                 if((i&(1<<j))!=0)
